@@ -3,10 +3,33 @@ Homekit
 
 My DIY HomeKit / HomeControl accessories.
 
+Installation
+============
+
+Save the following file as ``/etc/systemd/system/homekit.service``:
+
+    [Unit]
+    Description=homekit bridge
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    ExecStart=/home/pi/homekit
+    User=pi
+    Restart=on-abort
+    Environment=ICY_USERNAME=XXX
+    Environment=ICY_PASSWORD=XXX
+    WorkingDirectory=/home/pi
+
+    [Install]
+    WantedBy=multi-user.target
+
+Run:
+
+    sudo systemctl enable homekit.service
+
 Deploy
 ======
 
-    GOOS=linux GOARCH=arm GOARM=5 go build
-    ssh pi@10.0.1.10 rm homekit
-    scp homekit pi@10.0.1.10:~/homekit
-    ssh pi@10.0.1.10 sudo systemctl restart homekit
+    make
+

@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/bouke/hc-icy"
-	"github.com/brutella/hc/hap"
+	"github.com/brutella/hc"
 )
 
 func main() {
@@ -14,12 +14,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	t, err := hap.NewIPTransport(hap.Config{Pin: "12348765"}, thermostat.Accessory)
+	t, err := hc.NewIPTransport(hc.Config{Pin: "12344321"}, thermostat.Accessory)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	hap.OnTermination(func() {
+	hc.OnTermination(func() {
 		t.Stop()
 	})
 
