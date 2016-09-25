@@ -16,7 +16,7 @@ Save the following file as ``/etc/systemd/system/homekit.service``:
     [Service]
     ExecStart=/home/pi/homekit
     User=pi
-    Restart=on-abort
+    Restart=on-failure
     Environment=ICY_USERNAME=XXX
     Environment=ICY_PASSWORD=XXX
     WorkingDirectory=/home/pi
